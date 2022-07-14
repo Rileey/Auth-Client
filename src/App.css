@@ -14,9 +14,11 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #516285;
+  /* background-color: #222f49; */
   min-height: 100vh;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   flex-direction: column;
   align-items: center;
   justify-content: center;
