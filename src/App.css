@@ -84,7 +84,7 @@
 .abbey {
   margin-top: 45px;
   margin-left: 10px;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 700;
 }
 
@@ -229,3 +229,66 @@
   font-weight: 300;
   padding: 5px;
 }
+
+.icons {
+  width: 15px;
+  position: absolute; 
+  top: 15px; 
+  left: 10px;
+}
+
+@media only screen and (max-width: 880px) {
+  .abbey {
+    font-size: 15px;
+    margin-top: 50px;
+  }
+
+  .write-up {
+    display: contents;
+    font-weight: 300;
+    font-size: 15px;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (max-width: 769px) {
+  .App-header {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .left {
+    display: none;
+  }
+
+  .right {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 560px) {
+  .icons {
+    top: 18px;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .icons {
+    top: 20px
+  }
+
+  .title {
+    margin: 10px auto;
+  }
+
+  .form {
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 319px) {
+  .App {
+    position: fixed;
+  }
+}
+
