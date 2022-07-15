@@ -29,6 +29,10 @@ const UserSuccess = ({data}) => {
                     <span className="key">name</span>  
                     <span className="data">{data.firstname} {data.lastname}</span>
                 </div>
+                {/* <div className="user-object">
+                    <span className="key">Object</span>  
+                    <span className="string">{JSON.stringify(data)}</span>
+                </div> */}
                 </div>
                     )
                 }

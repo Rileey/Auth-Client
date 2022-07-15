@@ -237,6 +237,12 @@
   left: 10px;
 }
 
+.message {
+  font-size: 11px;
+  color: burlywood;
+  margin: 5px;
+}
+
 @media only screen and (max-width: 880px) {
   .abbey {
     font-size: 15px;

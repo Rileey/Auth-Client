@@ -1,9 +1,11 @@
 import { FaEnvelope } from 'react-icons/fa'
 import { FaUserEdit } from 'react-icons/fa'
 
-const UserDetails = ({data, setData}) => {
+const UserDetails = ({data, setData, message}) => {
+
     return (
         <div className="details-container">
+            <div className="message">{message}</div>
             <div className="container">
                 <FaEnvelope className='icons'/>
                 <input type="email" name="" value={data.email} placeholder="email" className="input" required onChange={(e)=>setData({...data, email: e.target.value})}/>
