@@ -161,10 +161,12 @@
   display: flex;
   width: 90%;
   margin: 0 auto;
-  justify-content: start;
 }
 
 .button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-right: 20px;
   margin-top: 10px;
   padding: 10px 15px;
@@ -237,10 +239,52 @@
   left: 10px;
 }
 
+.eye {
+  width: 15px;
+  position: absolute;
+  top: 15px;
+  right: 10px;
+  cursor: pointer;
+}
+
 .message {
   font-size: 11px;
   color: burlywood;
   margin: 5px;
+}
+
+.userlist-container {
+  display: flex;
+    flex-direction: column;
+    /* width: max-content; */
+}
+
+.search-bar {
+  padding: 7px 15px;
+  width: 200px;
+  border-radius: 7px;
+  outline: none;
+  border: 1px solid white;
+  background: #203153;
+  color: white;
+  margin: 20px 0;
+}
+
+.search-bar::placeholder {
+  color: rgba(255, 255, 255, 0.518);
+}
+
+.user-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.user-list-item {
+  display: flex;
+  font-size: 12px;
+  color: burlywood;
+  justify-content: flex-start;
+  margin: 2px;
 }
 
 @media only screen and (max-width: 880px) {
@@ -276,11 +320,19 @@
   .icons {
     top: 18px;
   }
+
+  .eye {
+    top: 18px;
+  }
 }
 
 @media only screen and (max-width: 425px) {
   .icons {
-    top: 20px
+    top: 20px;
+  }
+
+  .eye {
+    top: 20px;
   }
 
   .title {

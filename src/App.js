@@ -6,18 +6,21 @@ import React, { useEffect, useRef, useState } from 'react';
 import UserDetails from './components/userDetails';
 import UserPassword from './components/userPassword';
 import UserSuccess from './components/userSuccess';
-
+import UserList from './components/userList';
+import { TailSpin } from 'react-loader-spinner';
 
 function App() {
   const [data, setData] = useState({})
   const [message, setMessage] = useState('')
   const [page, setPage] = useState(0)
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
   const buttonRef = useRef()
 
   const title = ['Sign In to Abbey Mortgage Bank', 'Input the correct details']
 
   const handleSubmit = async () => {
+    setLoading(true)
     if (page < title.length - 1){
       setPage(page + 1)
     }
@@ -53,6 +56,7 @@ function App() {
       try {
         setSubmitted(true)
         await axios.post(`/register`, {email: data.email, firstname: data.firstname, lastname: data.lastname, password: data.password})
+        setLoading(false)
         buttonRef.current.style.display = 'none';
         setPage(page + 1)
       } catch (err) {
@@ -66,63 +70,78 @@ function App() {
       return <UserDetails data={data} setData={setData} message={message}/>
     } else if (page === 1) {
       return <UserPassword data={data} setData={setData} message={message}/>
+    } else if (page === 2){
+      return <UserSuccess data={data} page={page} setPage={setPage}/>
     } else {
-      return <UserSuccess data={data}/>
+      return <UserList />
     }
   }
 
+  const NextLoading = () => {
+    if (page < title.length - 1) {
+      return 'Next'
+    } else if (page === title.length - 1) {
+      return 'Submit'
+    } 
+    if ( page === title.length && loading ){
+      return <TailSpin
+              height="20"
+              width="20"
+              color='grey'
+              ariaLabel='loading'
+            />
+    } else {
+      return 'Submit'
+    }
+  } 
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <div className="left">
-          <div className="blue-container">
-            <div className="blue-container-top">
-            <div className="image-container">
+    <section className="App">
+      <section className="App-header">
+        <section className="left">
+          <section className="blue-container">
+            <section className="blue-container-top">
+            <section className="image-container">
               <img src={image} alt="logo" className="image" />
-            </div>
+            </section>
             <span className="abbey">Abbey Mortgage Bank</span>
-            </div>
-            <div className="blue-container-mid">
+            </section>
+            <section className="blue-container-mid">
               <img src={solution} alt="" className="svg" />
-            </div>
-            <div className="blue-container-bottom">
+            </section>
+            <section className="blue-container-bottom">
               <span className="write-up">
               Plan, Save & Invest in Your Tomorrow
               </span>
-            </div>
-          </div>
-        </div>
-        <div className="right">
-          <div className="form-container">
-          <div className="form">
-            <div className="title">
+            </section>
+          </section>
+        </section>
+        <section className="right">
+          <section className="form-container">
+          <section className="form">
+            <span className="title">
               {title[page]}
-            </div>
+            </span>
             
-            <div className="inputs">
+            <section className="inputs">
               {Components()}
-            </div>
-            <div ref={buttonRef} className="buttons">
+            </section>
+            <section ref={buttonRef} className="buttons">
               <button className='button'
               onClick={()=>{
                 setPage(page - 1)
                 if (page !== title.length - 1){
-                  // setShow(true)
                 }
               }}
-              disabled={page === 0}
-              >Previous</button>
+              disabled={page === 0}>Previous</button>
               
-                  <button className='button' 
-                  style={{}}
-                  onClick={handleSubmit}
-                  >{page === title.length - 1 ? 'Submit' : 'Next'}</button>
-            </div>
-            </div>
-          </div>
-        </div>
-      </header>
-    </div>
+            <button className='button' onClick={handleSubmit}>{NextLoading()}</button>
+            </section>
+            </section>
+          </section>
+        </section>
+      </section>
+    </section>
   );
 }
 

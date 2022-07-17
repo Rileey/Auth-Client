@@ -1,17 +1,15 @@
 import { useState, useRef } from "react"
 
 
-const UserSuccess = ({data}) => {
+const UserSuccess = ({data, page, setPage}) => {
     const detailRef = useRef()
 
     const [show, setShow] = useState(false)
     return(
-        <div className="success-container">
-            <div className="success-title">
-                Registration complete
-            </div>
-            <div className="user">Welcome {data.firstname} 🙌🏾</div>
-            <div className="success-details">
+        <section className="success-container">
+            <span className="success-title">Registration complete</span>
+            <span className="user">Welcome {data.firstname} 🙌🏾</span>
+            <section className="success-details">
                 <button ref={detailRef} className="button" onClick={()=>{
                     detailRef.current.style.display = 'none';
                     setShow(true)
@@ -20,24 +18,25 @@ const UserSuccess = ({data}) => {
                 </button>
                 {
                     show && (
-                <div className="user-details-container">
-                <div className="user-details">
+                <section className="user-details-container">
+                <section className="user-details">
                     <span className="key">email</span>  
                     <span className="data">{data.email}</span>
-                </div>
-                <div className="user-details">
+                </section>
+                <section className="user-details">
                     <span className="key">name</span>  
                     <span className="data">{data.firstname} {data.lastname}</span>
-                </div>
-                {/* <div className="user-object">
-                    <span className="key">Object</span>  
-                    <span className="string">{JSON.stringify(data)}</span>
-                </div> */}
-                </div>
+                </section>
+                <section className="user-details">
+                    <button className="button"
+                    onClick={()=>setPage(page + 1)}
+                    >User List</button>
+                </section>
+                </section>
                     )
                 }
-            </div>
-        </div>
+            </section>
+        </section>
     )
 }
 
